@@ -1,0 +1,166 @@
+[2025-12-20T00:24:30.185+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: automotivos_raw_silver_gold.spark_raw_silver_gold manual__2025-12-20T00:24:29.262478+00:00 [queued]>
+[2025-12-20T00:24:30.189+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: automotivos_raw_silver_gold.spark_raw_silver_gold manual__2025-12-20T00:24:29.262478+00:00 [queued]>
+[2025-12-20T00:24:30.189+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-12-20T00:24:30.195+0000] {taskinstance.py:2191} INFO - Executing <Task(SparkSubmitOperator): spark_raw_silver_gold> on 2025-12-20 00:24:29.262478+00:00
+[2025-12-20T00:24:30.200+0000] {standard_task_runner.py:60} INFO - Started process 199 to run task
+[2025-12-20T00:24:30.202+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'automotivos_raw_silver_gold', 'spark_raw_silver_gold', 'manual__2025-12-20T00:24:29.262478+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/automotivos_raw_silver_gold_dag.py', '--cfg-path', '/tmp/tmpmrydvfaw']
+[2025-12-20T00:24:30.204+0000] {standard_task_runner.py:88} INFO - Job 6: Subtask spark_raw_silver_gold
+[2025-12-20T00:24:30.233+0000] {task_command.py:423} INFO - Running <TaskInstance: automotivos_raw_silver_gold.spark_raw_silver_gold manual__2025-12-20T00:24:29.262478+00:00 [running]> on host d5b92b0194f5
+[2025-12-20T00:24:30.277+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='automotivos_raw_silver_gold' AIRFLOW_CTX_TASK_ID='spark_raw_silver_gold' AIRFLOW_CTX_EXECUTION_DATE='2025-12-20T00:24:29.262478+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-20T00:24:29.262478+00:00'
+[2025-12-20T00:24:30.283+0000] {base.py:83} INFO - Using connection ID 'spark_default' for task execution.
+[2025-12-20T00:24:30.283+0000] {spark_submit.py:473} INFO - Spark-Submit cmd: spark-submit --master yarn --conf spark.master=spark://spark-master:7077 --name arrow-spark --verbose --queue root.default --deploy-mode client /opt/***/spark_jobs/spark_raw_silver_gold_com_hdfs.py
+[2025-12-20T00:24:30.963+0000] {spark_submit.py:649} INFO - Using properties file: null
+[2025-12-20T00:24:31.020+0000] {spark_submit.py:649} INFO - Parsed arguments:
+[2025-12-20T00:24:31.020+0000] {spark_submit.py:649} INFO - master                  yarn
+[2025-12-20T00:24:31.020+0000] {spark_submit.py:649} INFO - remote                  null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - deployMode              client
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - executorMemory          null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - executorCores           null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - totalExecutorCores      null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - propertiesFile          null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - driverMemory            null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - driverCores             null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - driverExtraClassPath    null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - driverExtraLibraryPath  null
+[2025-12-20T00:24:31.021+0000] {spark_submit.py:649} INFO - driverExtraJavaOptions  null
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - supervise               false
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - queue                   root.default
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - numExecutors            null
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - files                   null
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - pyFiles                 null
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - archives                null
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - mainClass               null
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - primaryResource         file:/opt/***/spark_jobs/spark_raw_silver_gold_com_hdfs.py
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - name                    arrow-spark
+[2025-12-20T00:24:31.022+0000] {spark_submit.py:649} INFO - childArgs               []
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - jars                    null
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - packages                null
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - packagesExclusions      null
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - repositories            null
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - verbose                 true
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - 
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - Spark properties used, including those specified through
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - --conf and those from the properties file null:
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - (spark.master,spark://spark-master:7077)
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - 
+[2025-12-20T00:24:31.023+0000] {spark_submit.py:649} INFO - 
+[2025-12-20T00:24:31.199+0000] {spark_submit.py:649} INFO - Main class:
+[2025-12-20T00:24:31.200+0000] {spark_submit.py:649} INFO - org.apache.spark.deploy.PythonRunner
+[2025-12-20T00:24:31.200+0000] {spark_submit.py:649} INFO - Arguments:
+[2025-12-20T00:24:31.200+0000] {spark_submit.py:649} INFO - file:/opt/***/spark_jobs/spark_raw_silver_gold_com_hdfs.py
+[2025-12-20T00:24:31.200+0000] {spark_submit.py:649} INFO - null
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - Spark config:
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.app.name,arrow-spark)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.app.submitTime,1766190271187)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.master,yarn)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.submit.deployMode,client)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.submit.pyFiles,)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.yarn.isPython,true)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - (spark.yarn.queue,root.default)
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - Classpath elements:
+[2025-12-20T00:24:31.202+0000] {spark_submit.py:649} INFO - 
+[2025-12-20T00:24:31.203+0000] {spark_submit.py:649} INFO - 
+[2025-12-20T00:24:31.203+0000] {spark_submit.py:649} INFO - 
+[2025-12-20T00:24:31.628+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SparkContext: Running Spark version 3.4.3
+[2025-12-20T00:24:31.657+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-12-20T00:24:31.701+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO ResourceUtils: ==============================================================
+[2025-12-20T00:24:31.701+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2025-12-20T00:24:31.701+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO ResourceUtils: ==============================================================
+[2025-12-20T00:24:31.701+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SparkContext: Submitted application: Automotivos-RAW-SILVER-GOLD
+[2025-12-20T00:24:31.712+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2025-12-20T00:24:31.718+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO ResourceProfile: Limiting resource is cpus at 1 tasks per executor
+[2025-12-20T00:24:31.719+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2025-12-20T00:24:31.744+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SecurityManager: Changing view acls to: ***
+[2025-12-20T00:24:31.745+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SecurityManager: Changing modify acls to: ***
+[2025-12-20T00:24:31.745+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SecurityManager: Changing view acls groups to:
+[2025-12-20T00:24:31.745+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SecurityManager: Changing modify acls groups to:
+[2025-12-20T00:24:31.745+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: ***; groups with view permissions: EMPTY; users with modify permissions: ***; groups with modify permissions: EMPTY
+[2025-12-20T00:24:31.858+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO Utils: Successfully started service 'sparkDriver' on port 38063.
+[2025-12-20T00:24:31.872+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SparkEnv: Registering MapOutputTracker
+[2025-12-20T00:24:31.890+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SparkEnv: Registering BlockManagerMaster
+[2025-12-20T00:24:31.899+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2025-12-20T00:24:31.900+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2025-12-20T00:24:31.915+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2025-12-20T00:24:31.925+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-061a4da8-94d5-4338-8613-15516ad3de95
+[2025-12-20T00:24:31.937+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2025-12-20T00:24:31.954+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:31 INFO SparkEnv: Registering OutputCommitCoordinator
+[2025-12-20T00:24:32.016+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:32 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2025-12-20T00:24:32.044+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:32 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2025-12-20T00:24:32.149+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:32 INFO DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at /0.0.0.0:8032
+[2025-12-20T00:24:33.218+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:33 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:34.219+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:34 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:35.219+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:35 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:36.220+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:36 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:37.221+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:37 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:38.221+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:38 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:39.222+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:39 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:40.222+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:40 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:41.223+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:41 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:42.224+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:42 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:43.228+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:43 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:44.228+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:44 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:45.229+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:45 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:46.229+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:46 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:47.230+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:47 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:48.230+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:48 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:49.231+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:49 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:50.231+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:50 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:51.232+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:51 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:52.232+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:52 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:24:52.233+0000] {spark_submit.py:649} INFO - 25/12/20 00:24:52 INFO RetryInvocationHandler: java.net.ConnectException: Your endpoint configuration is wrong; For more details see:  http://wiki.apache.org/hadoop/UnsetHostnameOrPort, while invoking ApplicationClientProtocolPBClientImpl.getNewApplication over null after 1 failover attempts. Trying to failover after sleeping for 43111ms.
+[2025-12-20T00:25:36.345+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:36 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:37.345+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:37 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:38.346+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:38 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:39.346+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:39 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:40.347+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:40 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:41.347+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:41 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:42.348+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:42 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:43.349+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:43 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:44.349+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:44 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:45.349+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:45 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:25:45.350+0000] {spark_submit.py:649} INFO - 25/12/20 00:25:45 INFO RetryInvocationHandler: java.net.ConnectException: Your endpoint configuration is wrong; For more details see:  http://wiki.apache.org/hadoop/UnsetHostnameOrPort, while invoking ApplicationClientProtocolPBClientImpl.getNewApplication over null after 2 failover attempts. Trying to failover after sleeping for 21313ms.
+[2025-12-20T00:26:07.664+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:07 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:08.664+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:08 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:09.665+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:09 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:10.665+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:10 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:11.666+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:11 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:12.666+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:12 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:13.667+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:13 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:14.667+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:14 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:15.668+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:15 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:16.668+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:16 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:16.669+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:16 INFO RetryInvocationHandler: java.net.ConnectException: Your endpoint configuration is wrong; For more details see:  http://wiki.apache.org/hadoop/UnsetHostnameOrPort, while invoking ApplicationClientProtocolPBClientImpl.getNewApplication over null after 3 failover attempts. Trying to failover after sleeping for 22213ms.
+[2025-12-20T00:26:39.883+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:39 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:40.883+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:40 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:41.884+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:41 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:42.884+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:42 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:43.884+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:43 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:44.885+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:44 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:45.885+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:45 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:46.886+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:46 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:47.886+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:47 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:48.887+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:48 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:26:48.887+0000] {spark_submit.py:649} INFO - 25/12/20 00:26:48 INFO RetryInvocationHandler: java.net.ConnectException: Your endpoint configuration is wrong; For more details see:  http://wiki.apache.org/hadoop/UnsetHostnameOrPort, while invoking ApplicationClientProtocolPBClientImpl.getNewApplication over null after 4 failover attempts. Trying to failover after sleeping for 37845ms.
+[2025-12-20T00:27:27.733+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:27 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:28.734+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:28 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:29.734+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:29 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:30.735+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:30 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:31.735+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:31 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:32.736+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:32 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:33.736+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:33 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:34.737+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:34 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:35.737+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:35 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:36.738+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:36 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:27:36.738+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:36 INFO RetryInvocationHandler: java.net.ConnectException: Your endpoint configuration is wrong; For more details see:  http://wiki.apache.org/hadoop/UnsetHostnameOrPort, while invoking ApplicationClientProtocolPBClientImpl.getNewApplication over null after 5 failover attempts. Trying to failover after sleeping for 21732ms.
+[2025-12-20T00:27:59.471+0000] {spark_submit.py:649} INFO - 25/12/20 00:27:59 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:00.471+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:00 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:01.472+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:01 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:02.472+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:02 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:03.473+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:03 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:04.473+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:04 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:05.473+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:05 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:06.474+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:06 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:07.474+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:07 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:08.475+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:08 INFO Client: Retrying connect to server: 0.0.0.0/0.0.0.0:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+[2025-12-20T00:28:08.475+0000] {spark_submit.py:649} INFO - 25/12/20 00:28:08 INFO RetryInvocationHandler: java.net.ConnectException: Your endpoint configuration is wrong; For more details see:  http://wiki.apache.org/hadoop/UnsetHostnameOrPort, while invoking ApplicationClientProtocolPBClientImpl.getNewApplication over null after 6 failover attempts. Trying to failover after sleeping for 32549ms.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  

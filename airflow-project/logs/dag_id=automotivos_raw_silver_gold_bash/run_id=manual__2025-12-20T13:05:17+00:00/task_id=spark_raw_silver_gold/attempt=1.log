@@ -1,0 +1,23 @@
+[2025-12-20T13:05:18.334+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: automotivos_raw_silver_gold_bash.spark_raw_silver_gold manual__2025-12-20T13:05:17+00:00 [queued]>
+[2025-12-20T13:05:18.339+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: automotivos_raw_silver_gold_bash.spark_raw_silver_gold manual__2025-12-20T13:05:17+00:00 [queued]>
+[2025-12-20T13:05:18.339+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-12-20T13:05:18.347+0000] {taskinstance.py:1327} INFO - Executing <Task(BashOperator): spark_raw_silver_gold> on 2025-12-20 13:05:17+00:00
+[2025-12-20T13:05:18.352+0000] {standard_task_runner.py:57} INFO - Started process 216 to run task
+[2025-12-20T13:05:18.353+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'automotivos_raw_silver_gold_bash', 'spark_raw_silver_gold', 'manual__2025-12-20T13:05:17+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/automotivos_raw_silver_gold_dag.py', '--cfg-path', '/tmp/tmpz3thvvi3']
+[2025-12-20T13:05:18.355+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask spark_raw_silver_gold
+[2025-12-20T13:05:18.385+0000] {task_command.py:410} INFO - Running <TaskInstance: automotivos_raw_silver_gold_bash.spark_raw_silver_gold manual__2025-12-20T13:05:17+00:00 [running]> on host f6226f6f3e50
+[2025-12-20T13:05:18.442+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='automotivos_raw_silver_gold_bash' AIRFLOW_CTX_TASK_ID='spark_raw_silver_gold' AIRFLOW_CTX_EXECUTION_DATE='2025-12-20T13:05:17+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-20T13:05:17+00:00'
+[2025-12-20T13:05:18.443+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-12-20T13:05:18.443+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n        spark-submit /opt/***/spark_jobs/spark_raw_silver_gold_com_hdfs.py\n        ']
+[2025-12-20T13:05:18.452+0000] {subprocess.py:86} INFO - Output:
+[2025-12-20T13:05:18.453+0000] {subprocess.py:93} INFO - /bin/bash: line 2: spark-submit: command not found
+[2025-12-20T13:05:18.454+0000] {subprocess.py:97} INFO - Command exited with return code 127
+[2025-12-20T13:05:18.462+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/bash.py", line 211, in execute
+    f"Bash command failed. The command returned a non-zero exit code {result.exit_code}."
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 127.
+[2025-12-20T13:05:18.464+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=automotivos_raw_silver_gold_bash, task_id=spark_raw_silver_gold, execution_date=20251220T130517, start_date=20251220T130518, end_date=20251220T130518
+[2025-12-20T13:05:18.471+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 2 for task spark_raw_silver_gold (Bash command failed. The command returned a non-zero exit code 127.; 216)
+[2025-12-20T13:05:18.485+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2025-12-20T13:05:18.497+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

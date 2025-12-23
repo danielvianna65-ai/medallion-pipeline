@@ -1,0 +1,120 @@
+services:
+  # =========================
+  # POSTGRES (AIRFLOW METADATA)
+  # =========================
+  airflow-db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+
+  # =========================
+  # AIRFLOW INIT
+  # =========================
+  airflow-init:
+    image: airflow_project-airflow-webserver
+    depends_on:
+      - airflow-db
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
+      AIRFLOW__CORE__FERNET_KEY: "BUXLzFEh-IcTbSbToTwupLwR-UCk8JEDyMPtiKatpyA="
+      AIRFLOW__WEBSERVER__SECRET_KEY: "BUXLzFEh-IcTbSbToTwupLwR-UCk8JEDyMPtiKatpyA="
+    command: >
+      bash -c "airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
+
+  # =========================
+  # AIRFLOW WEBSERVER
+  # =========================
+  airflow-webserver:
+    build: .
+    depends_on:
+      - airflow-init
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
+      AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS: "False"
+      AIRFLOW__CORE__FERNET_KEY: "BUXLzFEh-IcTbSbToTwupLwR-UCk8JEDyMPtiKatpyA="
+      AIRFLOW__WEBSERVER__SECRET_KEY: "BUXLzFEh-IcTbSbToTwupLwR-UCk8JEDyMPtiKatpyA="
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./spark-jobs:/opt/airflow/spark-jobs
+    ports:
+      - "8080:8080"
+    command: webserver
+
+  # =========================
+  # AIRFLOW SCHEDULER
+  # =========================
+  airflow-scheduler:
+    build: .
+    depends_on:
+      - airflow-init
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow-db:5432/airflow
+      AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS: "False"
+      AIRFLOW__CORE__FERNET_KEY: "BUXLzFEh-IcTbSbToTwupLwR-UCk8JEDyMPtiKatpyA="
+      AIRFLOW__WEBSERVER__SECRET_KEY: "BUXLzFEh-IcTbSbToTwupLwR-UCk8JEDyMPtiKatpyA="
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./spark-jobs:/opt/airflow/spark-jobs
+    command: scheduler
+
+  # =========================
+  # HDFS NAMENODE
+  # =========================
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    environment:
+      CLUSTER_NAME: medallion
+      CORE_CONF_fs_defaultFS: hdfs://namenode:9000
+    volumes:
+      - namenode-data:/hadoop/dfs/name
+
+  # =========================
+  # HDFS DATANODE
+  # =========================
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    depends_on:
+      - namenode
+    environment:
+      CORE_CONF_fs_defaultFS: hdfs://namenode:9000
+    volumes:
+      - datanode-data:/hadoop/dfs/data
+
+  # =========================
+  # SPARK MASTER
+  # =========================
+  spark-master:
+    image: apache/spark:3.4.3
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "7077:7077"
+      - "8081:8080"
+    volumes:
+      - ./spark-jobs:/opt/airflow/spark-jobs
+
+  # =========================
+  # SPARK WORKER
+  # =========================
+  spark-worker:
+    image: apache/spark:3.4.3
+    depends_on:
+      - spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    volumes:
+      - ./spark-jobs:/opt/airflow/spark-jobs
+
+volumes:
+  namenode-data:
+  datanode-data:
+  postgres-db-volume:
