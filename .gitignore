@@ -1,0 +1,16 @@
+# Airflow
+airflow-project/logs/
+airflow-project/logs/**
+
+# Spark
+airflow-project/spark-jobs/dados/
+
+# Python
+__pycache__/
+*.pyc
+
+# Docker
+*.log
+
+# OS
+.DS_Store
