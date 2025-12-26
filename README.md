@@ -12,56 +12,92 @@ O objetivo do projeto é demonstrar, de forma prática, competências essenciais
 - **Processamento**: Apache Spark (Standalone Cluster)  
 - **Armazenamento**: Hadoop HDFS  
 - **Infraestrutura**: Docker Compose  
+---
+O pipeline segue o padrão Medallion (RAW → SILVER → GOLD), utilizando
+Apache Airflow para orquestração, Apache Spark para processamento distribuído
+e HDFS como camada de armazenamento.
 
+### Diagrama da Arquitetura
+
+![Medallion Data Pipeline – Airflow, Spark e HDFS](docs/architecture_diagram.png)
+---
 **Fluxo de dados:**
-
-Fonte CSV → RAW (HDFS) → SILVER (Parquet) → GOLD (Agregações Analíticas)
-
+```bash
+Fonte CSV
+   ↓
+RAW  (HDFS / CSV)
+   ↓
+SILVER (HDFS / Parquet / Particionado)
+   ↓
+GOLD (HDFS / Parquet / Agregado)
+```
 ---
 
 ## Estrutura do Repositório
 
 ```bash
 Medallion-pipeline/
+├── docs/
+│   └── architecture_diagram.png
 └── airflow-project/
     ├── dags/
-    │   └── automotivos_raw_silver_gold_dag.py
+    │   └── automotivos_raw_silver_gold.py
     ├── logs/
-    │   ├── dag_id=automotivos_raw_silver_gold
-    │   ├── dag_id=automotivos_raw_silver_gold_bash
-    │   ├── dag_processor_manager
-    │   └── scheduler
+    │   ├── dag_id=automotivos_raw_silver_gold/
+    │   ├── dag_processor_manager/
+    │   └── scheduler/
     ├── spark-jobs/
-    │   ├── dados/
-    │   │   └── precos_semestrais_automotivos_2025_01.csv
-    │   └── spark_raw_silver_gold_com_hdfs.py
+    │   ├── raw_ingest_hdfs.py
+    │   ├── silver_transform_automotivos.py
+    │   ├── gold_aggregate_automotivos.py
+    │   └── dados/
+    │       └── precos_semestrais_automotivos_2025_01.csv
     ├── docker-compose.yml
     └── Dockerfile
  ```
 ---
-## Camadas de Dados (Medallion Architecture)
-### RAW
+# Camadas de Dados (Medallion Architecture)
+## RAW
 - Ingestão direta de dados CSV no HDFS
 - Dados preservados no formato original
+- Escrita distribuída via Spark
 - Sem tratamento ou validação
 
-### SILVER
+### Exemplo de path:
+```bash
+/user/airflow/raw/orders/automotivos
+```
+---
+## SILVER
 - Limpeza e padronização dos dados
 - Conversão de tipos (datas, valores numéricos)
 - Escrita em formato Parquet
-- Dados prontos para uso analítico
-
-### GOLD
+- Particionamento por ano (year)
+- Dados prontos para análises exploratórias
+### Exemplo de path:
+```bash
+/user/airflow/silver/automotivos/year=2025
+```
+---
+## GOLD
 - Agregações e métricas consolidadas
-- Organização para consumo analítico
+- Dados prontos para consumo analítico / BI
+- Escrita em Parquet particionado
 - Foco em performance e clareza semântica
-- ---
+### Exemplo de path:
+```bash
+/user/airflow/gold/automotivos/year=2025
+```
+---
 
 ## Orquestração com Airflow
 - DAG única responsável por todo o fluxo RAW → SILVER → GOLD
 - Execução via SparkSubmitOperator
-- Separação clara entre lógica de orquestração (DAG) e lógica de processamento (Spark Job)
-- Logs centralizados para auditoria e troubleshooting
+- Spark executando em modo Standalone (spark://spark-master:7077)
+- Separação clara entre:
+- Orquestração (Airflow DAG)
+- Processamento (jobs PySpark)
+- Logs centralizados no Airflow para auditoria e troubleshooting
 
 ---
 ## Execução do Projeto
@@ -75,7 +111,7 @@ docker compose up -d
 - Senha: admin
 
 ### Execução da DAG
-- DAG: automotivos_raw_silver_gold
+- DAG: automotivos_medallion_dag
 - Execução manual via interface do Airflow
 
 ### Dataset
@@ -85,7 +121,9 @@ Espera-se que ele esteja disponível localmente no seguinte caminho:
 ```bash
 airflow-project/spark-jobs/dados/
 ```
-Fonte: ANP – Preços de Combustíveis (Brasil)
+### Fonte:
+ANP – Agência Nacional do Petróleo, Gás Natural e Biocombustíveis
+Preços de Combustíveis (Brasil)
 
 ### Considerações Técnicas Relevantes
 - Spark executando em modo Standalone, simulando ambiente distribuído
@@ -94,9 +132,10 @@ Fonte: ANP – Preços de Combustíveis (Brasil)
 spark://spark-master:7077
 ```
 - Persistência de dados no HDFS com controle de permissões
-- Diretórios criados explicitamente para evitar AccessControlException
-- Spark executando em modo Standalone (não YARN)
-- Uso de Parquet para otimização de leitura e escrita
+- Diretórios HDFS criados previamente para evitar AccessControlException
+- Uso de Parquet nas camadas SILVER e GOLD para otimização de I/O
+- Escrita idempotente (overwrite) nas execuções
+- Pipeline validado com _SUCCESS em todas as camadas
 - Ambiente totalmente reproduzível via Docker
 - ---
 
@@ -115,3 +154,4 @@ Python
 
 #### Autor 
 Daniel Lima Viana
+
