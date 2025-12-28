@@ -74,7 +74,7 @@ Medallion-pipeline/
 - Padronização de nomes de colunas (snake_case)
 - Remoção de colunas sem valor analítico ou persistentemente nulas
 - Remoção de registros com datas inválidas
-- Particionamento por ano (year)
+- Particionamento por ano (year) e mês (month)
 - Escrita em formato Parquet
 - Dados prontos para análises exploratórias
 ### Exemplo de path:
@@ -90,7 +90,6 @@ A camada GOLD implementa um modelo dimensional (Star Schema) com grão mensal, o
 - Produto
 - Localidade
 - Revenda
-- Tabela Fato
 
 **fact_preco_combustivel_mes**
 - preco_venda_medio
@@ -102,6 +101,14 @@ A camada GOLD implementa um modelo dimensional (Star Schema) com grão mensal, o
 - dim_produto
 - dim_localidade
 - dim_revenda
+
+#### Star Schema — Mini-Diagrama
+![Star Schema — Mini-Diagrama](docs/star_schema_diagram.jpg)
+
+A camada GOLD segue um modelo dimensional em Star Schema, com grão mensal.
+A tabela fato centraliza as métricas analíticas, enquanto as dimensões
+descrevem os eixos de análise (tempo, produto, localidade e revenda),
+otimizando consultas OLAP e ferramentas de BI.
 
 ### Exemplo de path:
 
