@@ -37,23 +37,32 @@ GOLD (HDFS / Parquet / Agregado)
 
 ```bash
 Medallion-pipeline/
+├── README.md
 ├── docs/
-│   └── architecture_diagram.png
-└── airflow-project/
-    ├── dags/
-    │   └── automotivos_raw_silver_gold.py
-    ├── logs/
-    │   ├── dag_id=automotivos_raw_silver_gold/
-    │   ├── dag_processor_manager/
-    │   └── scheduler/
-    ├── spark-jobs/
-    │   ├── raw_ingest_hdfs.py
-    │   ├── silver_transform_automotivos.py
-    │   ├── gold_aggregate_automotivos.py
-    │   └── dados/
-    │       └── precos_semestrais_automotivos_2025_01.csv
-    ├── docker-compose.yml
-    └── Dockerfile
+│   ├── architecture_diagram.png          # Diagrama da arquitetura Medallion (Airflow + Spark + HDFS)
+│   └── star_schema_diagram.jpg            # Mini-diagrama do Star Schema (camada GOLD)
+│
+├── airflow-project/
+│   ├── dags/
+│   │   └── automotivos_medallion_dag.py # DAG principal (RAW → SILVER → GOLD)
+│   │
+│   ├── spark-jobs/
+│   │   ├── raw_ingest_hdfs.py             # Ingestão RAW (CSV → HDFS)
+│   │   ├── silver_transform_automotivos.py# Limpeza, tipagem e particionamento (SILVER)
+│   │   ├── gold_aggregate_automotivos.py  # Star Schema + agregação mensal (GOLD)
+│   │   └── dados/
+│   │       └── precos_semestrais_automotivos_2025_01.csv
+│   │
+│   ├── logs/                              # Logs do Airflow (não versionados)
+│   │   ├── dag_id=automotivos_raw_silver_gold/
+│   │   ├── dag_processor_manager/
+│   │   └── scheduler/
+│   │
+│   ├── docker-compose.yml                 # Stack Docker (Airflow, Spark, HDFS)
+│   └── Dockerfile                         # Imagem customizada do Airflow
+│
+└── .gitignore
+
  ```
 ---
 # Camadas de Dados (Medallion Architecture)
