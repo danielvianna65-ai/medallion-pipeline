@@ -71,34 +71,52 @@ Medallion-pipeline/
 ## SILVER
 - Limpeza e padronização dos dados
 - Conversão de tipos (datas, valores numéricos)
-- Escrita em formato Parquet
+- Padronização de nomes de colunas (snake_case)
+- Remoção de colunas sem valor analítico ou persistentemente nulas
+- Remoção de registros com datas inválidas
 - Particionamento por ano (year)
+- Escrita em formato Parquet
 - Dados prontos para análises exploratórias
 ### Exemplo de path:
 ```bash
-/user/airflow/silver/automotivos/year=2025
+/user/airflow/silver/automotivos/year=2025/month=1
 ```
 ---
 ## GOLD
-- Agregações e métricas consolidadas
-- Dados prontos para consumo analítico / BI
-- Escrita em Parquet particionado
-- Foco em performance e clareza semântica
+A camada GOLD implementa um modelo dimensional (Star Schema) com grão mensal, otimizado para consultas analíticas e ferramentas de BI.
+
+**Grain (nível de detalhe)**
+- Preço médio mensal de combustíveis por:
+- Produto
+- Localidade
+- Revenda
+- Tabela Fato
+
+**fact_preco_combustivel_mes**
+- preco_venda_medio
+- quantidade_registros
+- Chaves estrangeiras para todas as dimensões
+
+**Dimensões**
+- dim_tempo_mes: ano, mês, trimestre, ano_mes
+- dim_produto
+- dim_localidade
+- dim_revenda
+
 ### Exemplo de path:
+
 ```bash
-/user/airflow/gold/automotivos/year=2025
+/user/airflow/gold/automotivos/fact_preco_combustivel_mes
 ```
 ---
-
 ## Orquestração com Airflow
 - DAG única responsável por todo o fluxo RAW → SILVER → GOLD
-- Execução via SparkSubmitOperator
+- Execução via **SparkSubmitOperator**
 - Spark executando em modo Standalone (spark://spark-master:7077)
 - Separação clara entre:
 - Orquestração (Airflow DAG)
 - Processamento (jobs PySpark)
 - Logs centralizados no Airflow para auditoria e troubleshooting
-
 ---
 ## Execução do Projeto
 ### Subir o ambiente
@@ -124,6 +142,14 @@ airflow-project/spark-jobs/dados/
 ### Fonte:
 ANP – Agência Nacional do Petróleo, Gás Natural e Biocombustíveis
 Preços de Combustíveis (Brasil)
+
+### Desafios Técnicos e Aprendizados
+- Correção de schema drift entre camadas SILVER e GOLD
+- Diagnóstico de erros de colunas inexistentes via Spark Logical Plan
+- Correção de configuração incorreta que forçava uso de YARN em vez de Standalone
+- Definição explícita de contrato entre camadas
+- Criação de um Star Schema consistente a partir de dados semi-estruturados
+- Gerenciamento de permissões e diretórios no HDFS
 
 ### Considerações Técnicas Relevantes
 - Spark executando em modo Standalone, simulando ambiente distribuído
